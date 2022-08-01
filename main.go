@@ -5,19 +5,19 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
 
+	var port = os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	http.HandleFunc("/", PublicIPHandler)
 
-	log.Println("Listening...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
-
-func HelloHandler(w http.ResponseWriter, _ *http.Request) {
-
-	fmt.Fprintf(w, "Hello, there\n")
+	log.Println("Listening... on :" + port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
 func PublicIPHandler(w http.ResponseWriter, _ *http.Request) {
