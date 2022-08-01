@@ -27,7 +27,7 @@ jobs:
 
       -
         name: Run GoReleaser
-        uses: goreleaser/goreleaser@v2
+        uses: goreleaser/goreleaser@v3
         with:
           args: release --skip-sign
         env:
